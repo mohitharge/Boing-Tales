@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#7ec8ff" />
+    <title>Boing Tales</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='34' r='26' fill='%23ff4760'/%3E%3Cellipse cx='24' cy='30' rx='5' ry='7' fill='%23fff'/%3E%3Cellipse cx='40' cy='30' rx='5' ry='7' fill='%23fff'/%3E%3Ccircle cx='25' cy='31' r='3' fill='%231d1636'/%3E%3Ccircle cx='41' cy='31' r='3' fill='%231d1636'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+
+    <!-- HUD -->
+    <div id="hud" class="hidden">
+      <div class="hud-left">
+        <div class="pill" id="hearts"></div>
+        <div class="pill form-pill" id="form-pill"><span class="form-dot"></span><span id="form-label">Bouncy</span></div>
+      </div>
+      <div class="pill level-pill" id="level-name">Sunny Meadow</div>
+      <div class="hud-right">
+        <div class="pill gem-pill"><span class="gem-icon"></span><span id="gem-count">0</span><span class="dim">/<span id="gem-total">0</span></span></div>
+        <button class="icon-btn" id="btn-sound" aria-label="Toggle sound">♪</button>
+        <button class="icon-btn" id="btn-pause" aria-label="Pause">❚❚</button>
+      </div>
+    </div>
+
+    <!-- Level intro card -->
+    <div id="title-card" class="hidden">
+      <div class="tc-level" id="tc-level">Level 1</div>
+      <div class="tc-name" id="tc-name">Sunny Meadow</div>
+      <div class="tc-hint" id="tc-hint"></div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="hidden"></div>
+
+    <!-- Main menu -->
+    <div id="menu" class="overlay">
+      <div class="menu-inner">
+        <h1 class="logo" id="logo"></h1>
+        <p class="tagline">A bouncy little ball. A big wobbly world.</p>
+        <div class="level-grid" id="level-grid"></div>
+        <div class="controls-hint">
+          <span><kbd>←</kbd><kbd>→</kbd> roll</span>
+          <span><kbd>Space</kbd> jump</span>
+          <span><kbd>Esc</kbd> pause</span>
+          <span><kbd>M</kbd> music</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pause -->
+    <div id="pause" class="overlay hidden">
+      <div class="panel">
+        <h2>Paused</h2>
+        <button class="btn primary" data-action="resume">Resume</button>
+        <button class="btn" data-action="restart">Restart level</button>
+        <button class="btn ghost" data-action="menu">Main menu</button>
+      </div>
+    </div>
+
+    <!-- Level complete -->
+    <div id="complete" class="overlay hidden">
+      <div class="panel">
+        <h2>Level Clear!</h2>
+        <div class="stars" id="stars"><span class="star"></span><span class="star"></span><span class="star"></span></div>
+        <div class="stats">
+          <div><span class="gem-icon"></span><b id="c-gems">0/0</b><small>gems</small></div>
+          <div><span class="clock">⏱</span><b id="c-time">0:00</b><small>time</small></div>
+        </div>
+        <button class="btn primary" data-action="next" id="btn-next">Next level</button>
+        <button class="btn" data-action="restart">Play again</button>
+        <button class="btn ghost" data-action="menu">Main menu</button>
+      </div>
+    </div>
+
+    <!-- Game over -->
+    <div id="gameover" class="overlay hidden">
+      <div class="panel">
+        <h2>Oh no, popped!</h2>
+        <p class="sub">Out of hearts. Give it another bounce?</p>
+        <button class="btn primary" data-action="restart">Try again</button>
+        <button class="btn ghost" data-action="menu">Main menu</button>
+      </div>
+    </div>
+
+    <!-- Touch controls -->
+    <div id="touch" class="hidden">
+      <div class="touch-left">
+        <button class="touch-btn" data-key="left" aria-label="Left">◀</button>
+        <button class="touch-btn" data-key="right" aria-label="Right">▶</button>
+      </div>
+      <button class="touch-btn jump" data-key="jump" aria-label="Jump">⤒</button>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
